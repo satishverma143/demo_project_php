@@ -9,4 +9,6 @@ $pageTitle = 'Demo Project';
 $script = array();
 
 require_once 'include/template.php';
+
+//Test for my commit.
 ?>
