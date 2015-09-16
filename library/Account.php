@@ -1,6 +1,18 @@
 <?php
-class userRegisteration
+class Account
 {
+    function doLogin($email,$password,$remeber){
+        $result  = array();
+        $errorMessage = '';
+        createConnection::connectToDatabase();
+        $sql = "SELECT email FROM tbl_login WHERE email = '$email' and password = '$password'";
+        $result = createConnection::dbQuery($sql);
+        if(createConnection::dbNumRows($result)==1){
+
+        }else{
+
+        }
+    }
 	function doRegister($firstName,$lastName,$emailid,$pass)
 	{
 		$first_name = $firstName;//$_POST['input_fname'];

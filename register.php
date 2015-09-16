@@ -1,32 +1,9 @@
 <!DOCTYPE html>
-<?php
-require_once './dbconfig/config.php';
-//require_once './library/functions.php';
-
-// $errorMessage = '&nbsp;';
-// if(isset($_POST['send'])!="")
-// {
-//  $result = doRegister();
-//     if ($result != '') {
-//         $errorMessage = $result;
-//     }
-// }
-
-
-// if (isset($_POST['input_fname']) && isset($_POST['input_lname'])) {
-//     $result = doRegister();
-//     if ($result != '') {
-//         $errorMessage = $result;
-//     }
-// }
-
-?>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Register | <?php echo $site_title; ?></title>
+    <title>Register | <?php echo ProjectTitle; ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
@@ -153,7 +130,7 @@ require_once './dbconfig/config.php';
 
     <script type="text/javascript">
         $('#btnSend').click(function(){
-            var url = "./utilities/userRegister.php"; // the script where you handle the form input.
+            var url = "./account/register.php"; // the script where you handle the form input.
             $.ajax({
                 type:"POST",
                 url:url,

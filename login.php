@@ -1,18 +1,4 @@
 <!DOCTYPE html>
-<?php
-require_once './dbconfig/config.php';
-require_once './library/functions.php';
-
-$errorMessage = '&nbsp;';
-
-if (isset($_POST['accno']) && isset($_POST['pass'])) {
-    $result = doLogin();
-    
-    if ($result != '') {
-        $errorMessage = $result;
-    }
-}
-?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -45,7 +31,7 @@ if (isset($_POST['accno']) && isset($_POST['pass'])) {
         <!--<canvas id="bubble-canvas"></canvas>-->
         <!-- /Background Bubbles -->
         <!-- Sign In Form -->
-        <form action="dashboard.html">
+        <form method="POST" id="form-sign-in">
             <div class="row links">
                 <div class="col s6 logo">
                     <img src="assets/theme/images/logo-white.png" alt="">
@@ -76,27 +62,28 @@ if (isset($_POST['accno']) && isset($_POST['pass'])) {
                 <!-- Username -->
                 <div class="input-field">
                     <i class="fa fa-user prefix"></i>
-                    <input id="username-input" type="text" class="validate">
-                    <label for="username-input">Username</label>
+                    <input id="email" name="email" type="email" class="validate" required>
+                    <label for="email">Email</label>
                 </div>
                 <!-- /Username -->
                 <!-- Password -->
                 <div class="input-field">
                     <i class="fa fa-unlock-alt prefix"></i>
-                    <input id="password-input" type="password" class="validate">
-                    <label for="password-input">Password</label>
+                    <input id="password" name = "password" type="password" class="validate" required>
+                    <label for="password">Password</label>
                 </div>
+                <input type="hidden" name="remember" id="remember" value="false">
                 <!-- /Password -->
 
                 <div class="switch">
                     <label>
-                        <input type="checkbox" checked />
+                        <input type="checkbox" id="cb-remember" />
                         <span class="lever"></span>
                         Remember
                     </label>
                 </div>
 
-                <button class="waves-effect waves-light btn-large z-depth-0 z-depth-1-hover">Sign In</button>
+                <button type="submit" class="waves-effect waves-light btn-large z-depth-0 z-depth-1-hover">Sign In</button>
             </div>
 
             <div class="links right-align">
@@ -122,5 +109,26 @@ if (isset($_POST['accno']) && isset($_POST['pass'])) {
     <script type="text/javascript" src="assets/sortable/Sortable.min.js"></script>
     <!-- Main -->
     <script type="text/javascript" src="assets/theme/js/theme.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#form-sign-in').submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url:"./account/login.php",
+                    data:$(this).serialize(),
+                    type:$(this).prop('method'),
+                    datatype:'json'
+                }).success(function  (data) {
+                    
+                }).error(function  (XHR,error,code) {
+                    alert(XHR+","+error+","+code);
+                });
+            });
+
+            $("#cb-remember").on('change',function () {
+                $("#remember").val($(this).is(':checked'));
+            })
+        });
+    </script>
 </body>
 </html>

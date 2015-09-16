@@ -14,6 +14,7 @@ session_start();
 
 //Project data
 $site_title = 'Demo PHP Project';
+define('ProjectTitle', "Demo HOT n SET");
 $email_id = 'satish.verma143@gmail.com';
 
 // setting up the web root and server root for
