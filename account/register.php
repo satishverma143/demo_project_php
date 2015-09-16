@@ -6,6 +6,7 @@ require_once '../library/Account.php';
 createConnection::connectToDatabase();	
 $account=new Account();
 
+
 if(isset($_REQUEST['input_fname']) && isset($_REQUEST['input_lname'])
    	&& isset($_REQUEST['input_email']) && isset($_REQUEST['input_password']))
 {
