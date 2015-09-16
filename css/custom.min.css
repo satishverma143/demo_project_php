@@ -1,0 +1,16 @@
+.bg-light-gray{
+	background: #F9F9F9;
+}
+.contain{
+	    /*height: 100%;
+    min-height: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+    background: #F9F9F9;*/
+    
+        min-height: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+    min-height: -webkit-calc(100vh - 55px);
+    min-height: calc(100vh - 55px);
+}
