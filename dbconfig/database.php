@@ -59,26 +59,16 @@ class createConnection
 		return self::$myconn->real_escape_string($input);
 	}
 
+	public static function dbFetchAssoc($result)
+	{
+		return $result->fetch_assoc();//mysql_fetch_assoc($result);
+	}
+	public static function dbFetchArray($result, $resultType = MYSQL_NUM) {
+		return mysqli_fetch_array($result, $resultType);
+	}
+
 }
-	// $DBServer = 'localhost'; // e.g 'localhost' or '192.168.1.100'
-	// $DBUser   = 'root';
-	// $DBPass   = '';
-	// $DBName   = 'demo_project_db';
-
-	// $dbConn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
-
-	// if ($dbConn->connect_error) {
-	//   trigger_error('Database connection failed: '  . $dbConn->connect_error, E_USER_ERROR);
-	// }
-
-	// function dbQuery($sql)
-	// { 	//globel $dbConn;
-	// 	$result = $dbConn->query($sql);//mysql_query($sql) or die(mysql_error());
-	// 	if($result === false) {
-	// 	    trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $dbConn->error, E_USER_ERROR);
-	// 	}
-	// 	return $result;	
-	// }
+	
 
 	// function dbAffectedRows()
 	// {

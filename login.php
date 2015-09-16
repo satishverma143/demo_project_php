@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login | <?php echo $site_title; ?></title>
+    <title>Login</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="assets/weatherIcons/css/weather-icons.min.css" />
     <!-- Main -->
     <link rel="stylesheet" type="text/css" href="assets/theme/css/theme.min.css"  />
+    <link rel="stylesheet" type="text/css" href="css/custom.min.css"  />
     <!--[if lt IE 9]>
       <script src="assets/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
@@ -30,7 +31,7 @@
         <!-- Background Bubbles -->
         <!--<canvas id="bubble-canvas"></canvas>-->
         <!-- /Background Bubbles -->
-        <!-- Sign In Form -->
+        <!-- Sign In Form -->        
         <form method="POST" id="form-sign-in">
             <div class="row links">
                 <div class="col s6 logo">
@@ -83,7 +84,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="waves-effect waves-light btn-large z-depth-0 z-depth-1-hover">Sign In</button>
+                <button type="submit" class="waves-effect waves-light btn-l btn-large z-depth-0 z-depth-1-hover">Sign In</button>
             </div>
 
             <div class="links right-align">
@@ -92,6 +93,10 @@
 
         </form>
         <!-- /Sign In Form -->
+        <div class="row error-message" id="message">
+            <div class="alert alert-dismissible lighten-4 text-darken-2"><strong>Error!</strong> User is already exist, please try another email.<button class="close">×</button></div>
+        </div>
+
     </section>
 
 
@@ -117,11 +122,16 @@
                     url:"./account/login.php",
                     data:$(this).serialize(),
                     type:$(this).prop('method'),
-                    datatype:'json'
-                }).success(function  (data) {
-                    
-                }).error(function  (XHR,error,code) {
-                    alert(XHR+","+error+","+code);
+                    datatype:'json',
+                    success:function(data){
+                        if(!data.status)
+                        {
+                            $('#message').append('<div class="alert alert-dismissible lighten-4 text-darken-2"><strong>Error!</strong> User is already exist, please try another email.<button class="close">×</button></div>');
+                        }
+                    },
+                    error:function(XHR,error,code){
+                         alert(XHR+","+error+","+code);
+                    }
                 });
             });
 

@@ -4,13 +4,27 @@ class Account
     function doLogin($email,$password,$remeber){
         $result  = array();
         $errorMessage = '';
+        $demo=array();
         createConnection::connectToDatabase();
-        $sql = "SELECT email FROM tbl_login WHERE email = '$email' and password = '$password'";
+        //$sql = "SELECT * FROM tbl_login WHERE email = '$email' and password = PASSWORD('$password') and is_active=true";
+        $sql="SELECT tl.id, tl.email, tl.password, tl.is_active, tu.first_name, tu.last_name, tu.login_id
+				FROM tbl_login tl
+				INNER JOIN tbl_users tu
+				ON tl.id=tu.login_id WHERE tl.email = '$email' and tl.password = PASSWORD('$password') and tl.is_active=true";
         $result = createConnection::dbQuery($sql);
         if(createConnection::dbNumRows($result)==1){
-
+        	while($row = createConnection::dbFetchAssoc($result))
+        	{
+        		$id=$row["id"];
+                $email=$row["email"];
+                $pass=$row["password"];
+                $name=$row["first_name"]." ".$row["last_name"];
+				$demo = array('status'=>true, 'id'=> $id,'email' => $email, 'name'=>$name );
+            }
+            return $demo;//print_r($demo);
         }else{
-
+        	//echo 'Your account number or password incorrect or Account is not Active.';
+        	return array('status'=>false, 'error'=>'Your account number or password incorrect or Account is not Active.');
         }
     }
 	function doRegister($firstName,$lastName,$emailid,$pass)

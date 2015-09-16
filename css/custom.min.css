@@ -14,3 +14,10 @@
     min-height: -webkit-calc(100vh - 55px);
     min-height: calc(100vh - 55px);
 }
+#sign-in .error-message, #sign-up .error-message {
+    position: relative;
+    margin: 0 auto;
+    max-width: 700px;
+    width: 100%;
+    z-index: 2;
+}

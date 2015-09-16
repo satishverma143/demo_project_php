@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="assets/weatherIcons/css/weather-icons.min.css" />
     <!-- Main -->
     <link rel="stylesheet" type="text/css" href="assets/theme/css/theme.min.css"  />
+    <link rel="stylesheet" type="text/css" href="css/custom.min.css"  />
     <!--[if lt IE 9]>
       <script src="assets/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
@@ -31,7 +32,6 @@
         <!--<canvas id="bubble-canvas"></canvas>-->
         <!-- /Background Bubbles -->
         <!-- Sign Up Form -->
-        <div id="message"></div>
         <form id="form_register" name="form_register" action="" method="post" enctype="multipart/form-data" data-parsley-validate>
             <div class="row links">
                 <div class="col s6 logo">
@@ -104,10 +104,18 @@
                     <label for="checkbox_terms">I agree to the <a href="#">terms of use</a>.</label>
                 </p>
 
-                <button id="btnSend" name="send" class="waves-effect waves-light btn-large z-depth-0 z-depth-1-hover">Sign Up <i class="mdi-action-lock-open right"></i></button>
+                <button id="btnSend" name="send" class="waves-effect waves-light btn-l btn-large z-depth-0 z-depth-1-hover">Sign Up <i class="mdi-action-lock-open right"></i></button>
             </div>
 
         </form>
+       <div class="row error-message" id="message">
+
+        </div>
+        <div class="alert alert-dismissible orange lighten-4 orange-text text-darken-2">
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+  <button class="close">&times;</button>
+</div>
+       
     </section>
 
 
